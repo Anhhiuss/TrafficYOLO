@@ -8,7 +8,7 @@ from ultralytics import YOLO
 # =========================
 # 1. CAU HINH DU AN
 # =========================
-VIDEO_PATH = Path("videos/16h15.25.9.22.mp4")
+VIDEO_PATH = Path("videos/3.mp4")
 OUTPUT_DIR = Path("outputs")
 EVIDENCE_DIR = OUTPUT_DIR / "evidence"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -288,4 +288,6 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    from count_line import main as current_main
+
+    current_main()

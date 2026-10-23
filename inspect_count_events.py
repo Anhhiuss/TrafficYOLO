@@ -4,9 +4,11 @@ from pathlib import Path
 
 import cv2
 
-VIDEO_PATH = Path("videos/16h15.25.9.22.mp4")
+VIDEO_PATH = Path("videos/3.mp4")
 CSV_PATH = Path("outputs/counted_vehicles.csv")
 OUTPUT_DIR = Path("outputs/count_event_frames")
+LINE_START = (0, 925)
+LINE_END = (1400, 750)
 
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -37,12 +39,14 @@ for event in events:
         if not ok:
             continue
 
-        # Ve lai vach dem
-        cv2.line(frame, (270, 315), (540, 315), (0, 0, 255), 2)
+        cv2.line(
+            frame, LINE_START, LINE_END, (0, 0, 255), 2, cv2.LINE_AA
+        )
 
         cv2.putText(
             frame,
-            f"Event ID {track_id}, frame {target_frame}",
+            f"Red-light event ID {track_id}, frame {target_frame}, "
+            f"signal {event.get('signal_state', 'UNKNOWN')}",
             (10, 30),
             cv2.FONT_HERSHEY_SIMPLEX,
             0.6,

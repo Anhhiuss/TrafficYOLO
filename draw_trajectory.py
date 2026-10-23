@@ -5,7 +5,7 @@ from pathlib import Path
 
 import cv2
 
-VIDEO_PATH = Path("videos/16h15.25.9.22.mp4")
+VIDEO_PATH = Path("videos/3.mp4")
 TRAJECTORY_PATH = Path("outputs/trajectory.csv")
 OUTPUT_PATH = Path("outputs/trajectory_video.mp4")
 

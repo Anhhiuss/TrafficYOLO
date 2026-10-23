@@ -1,7 +1,7 @@
 from pathlib import Path
 import cv2
 
-VIDEO_PATH = Path("videos/16h15.25.9.22.mp4")
+VIDEO_PATH = Path("videos/3.mp4")
 OUTPUT_PATH = Path("outputs/frame_for_counting.jpg")
 
 cap = cv2.VideoCapture(str(VIDEO_PATH))

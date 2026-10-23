@@ -2,12 +2,12 @@
 from pathlib import Path
 import cv2
 
-VIDEO_PATH = Path("videos/16h15.25.9.22.mp4")
+VIDEO_PATH = Path("videos/3.mp4")
 OUTPUT_PATH = Path("outputs/count_line_preview.jpg")
 
-# Vach dem thu nghiem
-LINE_START = (270, 315)
-LINE_END = (540, 315)
+# Same straight line coordinates as the counting scripts (1600 x 1200).
+LINE_START = (0, 925)
+LINE_END = (1400, 750)
 
 cap = cv2.VideoCapture(str(VIDEO_PATH))
 if not cap.isOpened():
@@ -22,19 +22,21 @@ if not ok:
     print("Khong doc duoc frame.")
     raise SystemExit(1)
 
-cv2.line(frame, LINE_START, LINE_END, (0, 0, 255), 3)
-
-cv2.circle(frame, LINE_START, 6, (0, 255, 255), -1)
-cv2.circle(frame, LINE_END, 6, (0, 255, 255), -1)
+line_preview = frame.copy()
+cv2.line(
+    line_preview, LINE_START, LINE_END, (0, 0, 255), 5, cv2.LINE_AA
+)
+frame = cv2.addWeighted(line_preview, 0.22, frame, 0.78, 0)
 
 cv2.putText(
     frame,
-    "COUNTING LINE - TEST",
-    (LINE_START[0], LINE_START[1] - 10),
+    "VIRTUAL COUNTING LINE",
+    (20, 35),
     cv2.FONT_HERSHEY_SIMPLEX,
-    0.55,
+    0.8,
     (0, 0, 255),
-    2
+    1,
+    cv2.LINE_AA
 )
 
 OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)

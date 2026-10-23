@@ -7,7 +7,7 @@ import cv2
 from ultralytics import YOLO
 
 # Video dau vao
-VIDEO_PATH = Path("videos/16h15.25.9.22.mp4")
+VIDEO_PATH = Path("videos/3.mp4")
 
 # Thu muc luu ket qua
 OUTPUT_DIR = Path("outputs")
